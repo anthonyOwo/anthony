@@ -1,0 +1,121 @@
+import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.Period;
+
+public class SeguroSoat {
+    private double valorAuto;
+    private int anioFabricacion;
+    private String modelo;
+
+    public void fDatosGenerales() {
+        Scanner anthony = new Scanner(System.in);
+        System.out.println("¡Bienvenido a la sección de seguros de autos desde solo 38 soles!");
+
+        System.out.println("Ingrese el valor de su auto: ");
+        valorAuto = anthony.nextDouble();
+        anthony.nextLine();
+    }
+
+    public void fEdad() {
+        Scanner ant = new Scanner(System.in);
+        System.out.println("Para la compra del seguro, coloque su fecha de nacimiento");
+        System.out.println("Ingrese el día de su nacimiento (DD): ");
+        int dia = ant.nextInt();
+        System.out.println("Ingrese el mes de su nacimiento (MM): ");
+        int mes = ant.nextInt();
+        System.out.println("Ingrese el año de su nacimiento (YYYY): ");
+        int anio = ant.nextInt();
+        LocalDate fechaNacimiento = LocalDate.of(anio, mes, dia);
+        LocalDate fechaActual = LocalDate.now();
+        int edadConductor = Period.between(fechaNacimiento, fechaActual).getYears();
+        ant.nextLine();
+        if (edadConductor >= 18) {
+            fEstadoAuto();
+            fModeloAuto();
+            fFinal();
+        } else {
+            System.out.println("Tiene que ser mayor de edad para adquirir un SOAT...");
+
+
+        }
+
+    }
+    public void fEstadoAuto(){
+        Scanner antonio = new Scanner(System.in);
+        System.out.println("¡Excelente!: ");
+        System.out.println("Ingrese el año de fabricación de su auto, por favor: ");
+        anioFabricacion = antonio.nextInt();
+        antonio.nextLine();
+        if (anioFabricacion>2000){
+            System.out.println("Su auto está dentro de los modelos admitidos");
+            System.out.println("Puede continuar con el trámite: ");
+        }
+        else {
+            System.out.println("Su auto está obsoleto, lo sentimos...");
+        }
+
+    }
+    public void fModeloAuto(){
+        Scanner anto= new Scanner(System.in);
+
+        System.out.println("Ahora, elija el modelo de su auto: ");
+        System.out.println("1. Chevrolet");
+        System.out.println("2. BWM");
+        System.out.println("3. Nissan");
+        System.out.println("4. Toyota");
+        System.out.println("5. Audi");
+        System.out.println("6. Ferrari");
+        System.out.println("7. volkswagen");
+        int opcion = anto.nextInt();
+        anto.nextLine();
+        switch (opcion) {
+            case 1:
+                modelo = "Chevrolet";
+                break;
+            case 2:
+                modelo = "BMW";
+                break;
+            case 3:
+                modelo = "Nissan";
+                break;
+            case 4:
+                modelo = "Toyota";
+                break;
+            case 5:
+                modelo = "Audi";
+                break;
+            case 6:
+                modelo = "Ferrari";
+                break;
+            case 7:
+                modelo = "Volkswagen";
+                break;
+            default:
+                modelo = "Modelo no especificado";
+        }
+
+
+    }
+
+    public void fFinal(){
+        Scanner a= new Scanner(System.in);
+        System.out.println("***¡En hora buena!***");
+        System.out.println("Su auto es un: "+ modelo);
+        System.out.println("De año de fabricación: "+ anioFabricacion);
+        System.out.println("De un valor de: "+ valorAuto);
+        System.out.println("¡Usted está dentro de los clientes aptos para adquirir un SOAT desde solo 38 soles!");
+        System.out.println("***¡Gracias por confiar en nosotros!***");
+        a.nextLine();
+        a.close();
+    }
+    public static void main(String[] args) {
+
+        SeguroSoat s = new SeguroSoat();
+        s.fDatosGenerales();
+        s.fEdad();
+        s.fEstadoAuto();
+        s.fModeloAuto();
+        s.fFinal();
+
+    }
+}
